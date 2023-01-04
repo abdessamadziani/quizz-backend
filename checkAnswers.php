@@ -23,16 +23,20 @@ include "database.php";
 
 
     $array =json_decode($_POST['array']);
+    $d = count($array);
+    // echo $d;
+    // $nb_answers=json_decode($_POST['nb_answers']);
 
 
 
 
 $s = 0;
-    for ($i=0; $i <10 ; $i++) { 
+    for ($i=0; $i <$d ; $i++) { 
        for ($j=0; $j < 10; $j++) { 
         # code...
         if ($array[$i] == $arr[$j]) {
             # code...
+
             $s++;
             
         }

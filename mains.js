@@ -13,18 +13,9 @@ let radios=document.getElementsByName("rbtn")
 let counter
 let current_question
 let array=[]
-// let btn_start=document.querySelector(".start")
-// btn_start.onclick=()=>
-// {
-//    document.cookie="name="+document.querySelector('.tt').value;
-// }
-// let name=document.querySelector(".name")
+
 
 let name_txt=document.createElement("h2")
-
-
-
-
 
 let cookie_name=document.cookie.split("=")
 name_txt=document.createTextNode("Welcome "+cookie_name[1])
@@ -35,9 +26,7 @@ document.getElementById("txt_val").appendChild(name_txt)
 
 let current_index=0
 let right_questions_count=0
-
 let right_answer_q
-
 let r_q=[]
 
 
@@ -86,9 +75,6 @@ function getQuestions()
 
          })
        }
-
-
-
 
 
 
@@ -219,10 +205,11 @@ if(current_index<q_count)
   }
 }
 
-var answers_chosen=[]
+let answers_chosen=[]
+
 function checkAnswer(r_answer,q_count,question)
 {
-   //let chosen_answer
+   let chosen_answer
    
 
   for(let i=0;i<radios.length;i++)
@@ -232,6 +219,7 @@ function checkAnswer(r_answer,q_count,question)
         {
         chosen_answer=radios[i].getAttribute("data")
         answers_chosen.push(chosen_answer);
+        nb_answers_chosen++
 
         }
      
@@ -239,6 +227,8 @@ function checkAnswer(r_answer,q_count,question)
  
   if(chosen_answer === r_answer)
   {
+    
+
     // array.push("r",r_answer)
      console.log("good job")
      //right_questions_count++
@@ -247,6 +237,7 @@ function checkAnswer(r_answer,q_count,question)
   }
   else if(chosen_answer==undefined)
     {
+      
       res_area.innerHTML+=`<span style="display:block;color:blue; background-color:white;padding:10px;width:80%">${current_index+1}-${question}</span>`
       res_area.innerHTML+=`<span style="display:block;color:white; background-color:red; padding:10px;width:80%" >You didn't choose anything</span>`
       res_area.innerHTML+=`<span style="display:block;color:white; background-color:green;padding:10px;width:80% ">${r_answer}</span> <br><br>`
@@ -350,7 +341,6 @@ function countDown(duration,q_count)
 
       if(--duration<0)
       {
-        
         clearInterval(counter)
         btn_Next.click()
 
@@ -379,6 +369,8 @@ function showCorrectAnswers(q_count){
         }
     }
     xhr.send(`array=${encodeURIComponent(JSON.stringify(answers_chosen))}`);
+    // xhr.send(`nb_answers=${encodeURIComponent(JSON.stringify(nb_answers_chosen))}`);
+
     }
   }
 
